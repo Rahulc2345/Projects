@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-xs-12">
+        <table mdbTable>
+            <caption>List of projects</caption>
+            <tr>
+                <th scope="col">Manager Id</th>
+                <th scope="col">Project Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Team Member</th>
+                <th scope="col">Scrum Master</th>
+                <th scope="col">Status</th>
+            </tr>
+            <tbody>
+                <tr mdbTableCol *ngFor="let proj of project">
+                    <td><input type="number" [disabled]="enableEdit.id!=proj.id " [(ngModel)]="proj.managerId" value="proj.managerId"
+                             /></td>
+                    <td><input type="number" [disabled]="enableEdit.id!=proj.id " [(ngModel)]="proj.id" value="proj.id" name="{{project.id}}"
+                        /></td>
+                    <td><input type="text" [disabled]="enableEdit.id!=proj.id " [(ngModel)]="proj.name" value="proj.name" /></td>
+                    <td><input type="number" [disabled]="enableEdit.id!=proj.id " [(ngModel)]="proj.team_member" value="proj.team_member"
+                        /></td>
+                    <td><input type="text" [disabled]="enableEdit.id!=proj.id " [(ngModel)]="proj.scrum_master" value="proj.scrum_master"
+                        /></td>
+                    <td><input type="text" [disabled]="enableEdit.id!=proj.id " [(ngModel)]="proj.status" value="proj.status"
+                        /></td>
+                    <td *ngIf="isAdmin">
+                        <button class="btn" *ngIf="enableEdit.id!=proj.id" (click)="onClickEdit(proj)">Edit</button>
+                        <button class="btn" *ngIf="enableEdit.id==proj.id" (click)="onClickUpdate(proj)">Update</button>
+                        <button class="btn" *ngIf="enableEdit.id==proj.id" (click)="onClickCancel()">Cancel</button>
+                        <button class="btn" (click)="onClickDelete(proj.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div>
+    <app-task [projectId]="projectId"></app-task>
+</div>
+<!--<div>
+    <app-backlog [projectId]="projectId"></app-backlog>
+</div>-->
+
+
+
+<!--
+<div class="row" *ngIf="enableAdd">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div [hidden]="hide" style="width: 400px;">
+            <form [formGroup]="addProjectForm" (ngSubmit)="submitForm()">
+                <table>
+                    <td>
+                        <div class="form-group">
+                            <label for="name">Manager Id</label>
+                            <input type="text" class="form-control" formControlName="managerId" data-toggle="tooltip" data-placement="right" title="Manager Id"
+                                [ngClass]="{ 'is-invalid': submitted && f.managerId.errors }">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required" class="alert alert-danger">Name is required</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="name">Id</label>
+                            <input type="number" class="form-control" formControlName="id" data-toggle="tooltip" data-placement="right" title="Id" [ngClass]="{ 'is-invalid': submitted && f.id.errors }">
+                            <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+                                <div *ngIf="f.id.errors.required" class="alert alert-danger">Id is required</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" formControlName="name" data-toggle="tooltip" data-placement="right" title="Name"
+                                [ngClass]="{ 'is-invalid': submitted && f.id.errors }">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required" class="alert alert-danger">Name is required</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="name">Team Member</label>
+                            <input type="text" class="form-control" formControlName="team_member" data-toggle="tooltip" data-placement="right" title="Team Member"
+                                [ngClass]="{ 'is-invalid': submitted && f.id.errors }">
+                            <div *ngIf="submitted && f.team_member.errors" class="invalid-feedback">
+                                <div *ngIf="f.team_member.errors.required" class="alert alert-danger">Team Member is required</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="name">Scrum Master</label>
+                            <input type="text" class="form-control" formControlName="scrum_master" data-toggle="tooltip" data-placement="right" title="Scrum Master"
+                                [ngClass]="{ 'is-invalid': submitted && f.id.errors }">
+                            <div *ngIf="submitted && f.scrum_master.errors" class="invalid-feedback">
+                                <div *ngIf="f.scrum_master.errors.required" class="alert alert-danger">Scrum Master is required</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="name">Status</label>
+                            <input type="text" class="form-control" formControlName="status" data-toggle="tooltip" data-placement="right" title="Status"
+                                [ngClass]="{ 'is-invalid': submitted && f.id.errors }">
+                            <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                                <div *ngIf="f.status.errors.required" class="alert alert-danger">Status is required</div>
+                            </div>
+                        </div>
+                    </td>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>-->

@@ -1,0 +1,38 @@
+<p>backlog works!</p>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table style="align-self: center">
+            <caption>List of Backlogs</caption>
+            <tr>
+                <th >Project Id</th>
+                <th >Backlog Id</th>
+                <th >Title</th>
+            </tr>
+            <tbody>
+                <tr *ngFor="let backlog of backlogs">
+                    <td>{{backlog.projectId}}</td>
+                    <td>{{backlog.backlogId}}</td>
+                    <td>{{backlog.title}}</td>
+                    <button class="btn" (click)="onClickDetail(backlog.projectId)">Details</button>        
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success" (click)="addBacklog()">Add Backlog</button>
+    </div>
+</div>
+
+<!--<ng-container>
+    <select *ngFor="let project of projects">
+        <option></option>
+    </select>
+</ng-container>-->
+
+<div *ngIf="isEnable">
+        <app-add-backlog  [projects]="projects" (addEmit)="getBacklogList()" (cancelEmit)="onBacklogCancel()"></app-add-backlog>
+</div>

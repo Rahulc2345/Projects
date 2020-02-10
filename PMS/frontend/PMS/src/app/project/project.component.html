@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h4 style="color: red">{{msg}}</h4>
+        <table border="1">
+            <tr>
+                <th>ManagerId</th>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            <tr *ngFor="let project of projects">
+                <td>{{project.managerId}}</td>
+                <td>{{project.id}}</td>
+                <td>{{project.name}}</td>
+                <td><button class="btn" (click)="onClickDetails(project.id)">Details</button></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
